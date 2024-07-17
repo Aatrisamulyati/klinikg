@@ -26,13 +26,11 @@
 
                     <div class="mb-3">
                         <label>Spesialis</label>
-                        <input type="text" name="spesialis"
-                            class="form-control @error('spesialis') is-invalid @enderror"
-                            value="{{ @old('spesialis') }}">
+                        <select id="spesialis" name="spesialis" class="form-control">
+                            <option value="Spesialis Gigi">Spesialis Gigi</option>
+                        </select>
                         @error('spesialis')
-                        <div class="invalid-feedback">
-                            {{ $message }}
-                        </div>
+                            <div class="text-danger">{{ $message }}</div>
                         @enderror
                     </div>
 

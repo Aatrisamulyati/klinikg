@@ -1,11 +1,12 @@
 <?php
 
 namespace App\Http\Controllers;
+use App\Http\Controllers;
+use App\Models\Transaksi;
 
-use App\Models\Services;
 use Illuminate\Http\Request;
 
-class ServicesController extends Controller
+class TransaksiBackendController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,7 +15,12 @@ class ServicesController extends Controller
      */
     public function index()
     {
-        //
+        $transaksis = Transaksi::leftJoin('dokters', 'transaksis.dokter_id', '=', 'dokters.id')
+            ->join('pasiens', 'transaksis.pasien_id', '=', 'pasiens.id')
+            ->select('transaksis.id', 'pasiens.nama_pasien','dokters.nama_dokter', 'transaksis.tgl_transaksi','transaksis.total','transaksis.status' )  // Adjust the select statement as needed
+            ->get();
+
+        return view('backend.transaksi.index', compact('transaksis'));
     }
 
     /**
@@ -41,10 +47,10 @@ class ServicesController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Services  $services
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(Services $services)
+    public function show($id)
     {
         //
     }
@@ -52,10 +58,10 @@ class ServicesController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Services  $services
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(Services $services)
+    public function edit($id)
     {
         //
     }
@@ -64,10 +70,10 @@ class ServicesController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Services  $services
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Services $services)
+    public function update(Request $request, $id)
     {
         //
     }
@@ -75,10 +81,10 @@ class ServicesController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Services  $services
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Services $services)
+    public function destroy($id)
     {
         //
     }

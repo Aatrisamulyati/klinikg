@@ -1,7 +1,9 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use App\Http\Controllers;
+use App\Models\Product;
+use App\Models\Services;
 use Illuminate\Http\Request;
 
 class ServicesBackendController extends Controller
@@ -13,7 +15,8 @@ class ServicesBackendController extends Controller
      */
     public function index()
     {
-        //
+        $servicess = Services::with('product')->get();
+        return view('backend.services.index', compact('servicess'));
     }
 
     /**
@@ -23,7 +26,8 @@ class ServicesBackendController extends Controller
      */
     public function create()
     {
-        //
+        $products = Product::all();
+        return view('backend.services.create', compact('products'));
     }
 
     /**
@@ -34,7 +38,14 @@ class ServicesBackendController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validated = $request->validate([
+            'nama_services' => 'required',
+            'product_id' => 'required', 
+            'harga' => 'required|numeric',
+        ]);
+        
+        Services::create($validated); 
+        return redirect('data-services')->with('success', 'Data berhasil ditambahkan!');
     }
 
     /**
@@ -56,7 +67,10 @@ class ServicesBackendController extends Controller
      */
     public function edit($id)
     {
-        //
+        $servicess = Services::findOrFail($id);
+        $products = Product::all();
+
+        return view('backend.services.edit', compact('servicess', 'products'));
     }
 
     /**
@@ -68,7 +82,15 @@ class ServicesBackendController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $validated = $request->validate([
+            'nama_services' => 'required',
+            'product_id' => 'required', 
+            'harga' => 'required|numeric',
+        ]);
+
+        $servicess = Services::findOrFail($id);
+        $servicess->update($validated);
+        return redirect('data-services')->with('success', 'Data berhasil ditambahkan!');
     }
 
     /**
@@ -77,8 +99,14 @@ class ServicesBackendController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy( Request $request, $id)
     {
-        //
+        if($request->oldPicture) {
+            Storage::delete($request->oldPicture);
+        }
+
+        Services::where('id', $id)->delete();
+
+        return redirect('data-services')->with('success', 'Data berhasil di Hapus!');
     }
 }

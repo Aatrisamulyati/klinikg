@@ -7,6 +7,9 @@ use App\Http\Controllers\DokterBackendController;
 use App\Http\Controllers\JadwalBackendController;
 use App\Http\Controllers\PasienBackendController;
 use App\Http\Controllers\ProductBackendController;
+use App\Http\Controllers\ServicesBackendController;
+use App\Http\Controllers\TransaksiBackendController;
+use App\Http\Controllers\PerkembanganBackendController;
 
 /*
 |--------------------------------------------------------------------------
@@ -49,7 +52,10 @@ Route::group(['middleware' => [CekLevel::class . ':Admin']], function () {
     Route::resource('data-pasien', PasienBackendController::class);
     Route::resource('data-dokter', DokterBackendController::class);
     Route::resource('data-jadwal', JadwalBackendController::class);
+    Route::resource('data-services', ServicesBackendController::class);
     Route::resource('data-product', ProductBackendController::class);
+    Route::resource('data-perkembangan', PerkembanganBackendController::class);
+    Route::resource('data-transaksi', TransaksiBackendController::class);
 
 });
 

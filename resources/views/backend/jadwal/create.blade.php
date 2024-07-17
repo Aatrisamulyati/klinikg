@@ -32,7 +32,6 @@
                             </div>
                     </div>
            
-
                     <div class="mb-3">
                         <label for="hari">Hari</label>
                         <input type="text" class="form-control @error('hari') is-invalid @enderror" id="hari" name="hari" value="{{ old('hari') }}" required>
@@ -62,8 +61,6 @@
                             </span>
                         @enderror
                     </div>
-
-
 
                     <div class="mb-3">
                         <label for="status" class="form-label">Status</label>

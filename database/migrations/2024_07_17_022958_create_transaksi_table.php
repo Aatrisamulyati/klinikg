@@ -13,9 +13,14 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('spesialis', function (Blueprint $table) {
+        Schema::create('transaksis', function (Blueprint $table) {
             $table->id();
-            $table->string('nama_spesialis');
+            $table->unsignedBigInteger('pasien_id');
+            $table->unsignedBigInteger('dokter_id');
+            $table->date('tgl_transaksi');
+            $table->integer('total');
+            $table->enum('status', ['belum dikonfirmasi', 'proses', 'selesai', 'dll'])->default('belum dikonfirmasi');
+
             $table->timestamps();
         });
     }
@@ -27,6 +32,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('spesialis');
+        Schema::dropIfExists('transaksi');
     }
 };

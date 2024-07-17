@@ -73,19 +73,19 @@
   
   
   <main id="main">
-    <!-- ======= Why Us Section ======= -->
+  <!-- ======= Why Us Section ======= -->
 
   <!-- Clinic Details -->
-  <div class="container clinic-details">
+  {{-- <div class="container clinic-details">
       <div class="clinic-header">
           <img src="{{ asset('frontend/img/logo .jpg') }}" alt="Dentacio Dental Clinic" class="clinic-logo">
           <div class="clinic-info">
-              <h1>Dentacio Dental Clinic</h1>
+              <h1>Maicit Dental Care</h1>
               <p><i class="bi bi-geo-alt"></i> Dentacio Dental Care, Jalan Doktor Sutomo, Kubu Marapalam, Kota Padang, Sumatera Barat, Indonesia</p>
               <p><a href="#">Lihat daftar cabang rumah sakit/klinik lainnya.</a></p>
           </div>
       </div>
-  </div>
+  </div> --}}
  
 
   @yield('content')

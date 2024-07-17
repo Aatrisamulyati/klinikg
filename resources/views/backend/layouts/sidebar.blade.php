@@ -30,12 +30,12 @@
             </a>
         </li>
 
-        <li class="menu-item {{ request()->is('data-booking.index') ? 'active' : '' }}">
+        {{-- <li class="menu-item {{ request()->is('data-booking.index') ? 'active' : '' }}">
             <a href="data-booking.index" class="menu-link">
                 <i class="menu-icon tf-icons bx bx-bookmark"></i>
                 <div data-i18n="Basic">Data Booking</div>
             </a>
-        </li>
+        </li> --}}
 
         <li class="menu-item {{ request()->routeIs('data-dokter.index') ? 'active' : '' }}">
             <a href="{{ route('data-dokter.index') }}" class="menu-link @yield('menuDataDokter')">
@@ -44,14 +44,26 @@
             </a>
         </li>
 
-        <li class="menu-item {{ request()->is('cards-basic.html') ? 'active' : '' }}">
+        <li class="menu-item {{ request()->is('data-jadwal.index') ? 'active' : '' }}">
             <a href="{{ route('data-jadwal.index') }}" class="menu-link @yield('menuDatajadwal')">
                 <i class="menu-icon tf-icons bx bx-time"></i>
                 <div data-i18n="Basic">Jadwal Dokter</div>
             </a>
         </li>
 
-    
+        {{-- <li class="menu-item {{ request()->is('data-perkembangan.index') ? 'active' : '' }}">
+            <a href="{{ route('data-perkembangan.index') }}" class="menu-link @yield('menuDatajadwal')">
+                <i class="menu-icon tf-icons  bx bx-refresh"></i>
+                <div data-i18n="Basic">Perkembangan</div>
+            </a>
+        </li> --}}
+        
+        <li class="menu-item {{ request()->routeIs('data-services.index') ? 'active' : '' }}">
+            <a href="{{ route('data-services.index') }}" class="menu-link @yield('menuDataServices')">
+                <i class="menu-icon tf-icons bx bx-user-plus"></i>
+                <div data-i18n="Basic">Data Services</div>
+            </a>
+        </li>
 
         <li class="menu-item {{ request()->routeIs('data-product.index') ? 'active' : '' }}">
             <a href="{{ route('data-product.index') }}" class="menu-link @yield('menuDataProduct')">
@@ -60,18 +72,18 @@
             </a>
         </li>
 
-        <li class="menu-item {{ request()->is('cards-basic.html') ? 'active' : '' }}">
-            <a href="cards-basic.html" class="menu-link">
+        <li class="menu-item {{ request()->routeIs('data-transaksi.index') ? 'active' : '' }}">
+            <a href="{{ route('data-transaksi.index') }}" class="menu-link  @yield('menuDataTransaksi')">
                 <i class="menu-icon tf-icons bx bx-money"></i>
                 <div data-i18n="Basic">Transaksi</div>
             </a>
         </li>
 
-        <li class="menu-item {{ request()->is('cards-basic.html') ? 'active' : '' }}">
+        <{{-- li class="menu-item {{ request()->is('cards-basic.html') ? 'active' : '' }}">
             <a href="cards-basic.html" class="menu-link">
                 <i class="menu-icon tf-icons bx bx-clipboard"></i>
                 <div data-i18n="Basic"> Laporan </div>
             </a>
-        </li>
+        </li> --}}
     </ul>
 </aside>

@@ -62,7 +62,7 @@
   @include('frontend.layouts.header')
 
   <!-- ======= End Header ======= -->
-  <section id="hero" class="d-flex align-items-center">
+  {{-- <section id="hero" class="d-flex align-items-center">
     <div class="container">
       <h1>Welcome to Maicit Dental </h1>
       <h2>We are team of talented designers making websites with Bootstrap</h2>
@@ -72,11 +72,11 @@
   </section><!-- End Hero -->
   
   
-  <main id="main">
+  <main id="main"> --}}
     <!-- ======= Why Us Section ======= -->
 
   <!-- Clinic Details -->
-  <div class="container clinic-details">
+  {{-- <div class="container clinic-details">
       <div class="clinic-header">
           <img src="{{ asset('frontend/img/logo .jpg') }}" alt="Dentacio Dental Clinic" class="clinic-logo">
           <div class="clinic-info">
@@ -85,7 +85,7 @@
               <p><a href="#">Lihat daftar cabang rumah sakit/klinik lainnya.</a></p>
           </div>
       </div>
-  </div>
+  </div> --}}
  
 
   @yield('content')

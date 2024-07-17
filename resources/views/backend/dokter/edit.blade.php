@@ -29,9 +29,9 @@
 
                     <div class="mb-3">
                         <label>Spesialis</label>
-                        <input type="text" name="spesialis"
-                            class="form-control @error('spesialis') is-invalid @enderror"
-                            value="{{ old('spesialis', $dokters->spesialis) }}">
+                        <select id="spesialis" name="spesialis" class="form-control @error('spesialis') is-invalid @enderror">
+                            <option value="Spesialis Gigi" {{ $dokters->spesialis == 'Spesialis Gigi' ? 'selected' : '' }}>Spesialis Gigi</option>
+                        </select>
                         @error('spesialis')
                         <div class="invalid-feedback">
                             {{ $message }}

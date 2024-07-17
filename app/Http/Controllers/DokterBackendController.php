@@ -39,7 +39,7 @@ class DokterBackendController extends Controller
     {
         $validated = $request->validate([
             'nama_dokter' => 'required|string|max:255',
-            'spesialis' => 'required|string|max:255',
+            'spesialis' => 'required|in:Spesialis Gigi|string|max:255',
             'phone' => 'nullable|string|max:15',
         ]);
 

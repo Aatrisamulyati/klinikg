@@ -14,4 +14,10 @@ class Dokter extends Model
         'spesialis',
         'phone',
     ];
+    
+    public function transaksi()
+    {
+        return $this->belongsTo(Transaksi::class, 'dokter_id');
+    }
+
 }

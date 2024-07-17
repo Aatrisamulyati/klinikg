@@ -37,9 +37,9 @@
                                     <td>{{ $jadwal->jam_selesai }}</td>
                                     <td>{{ $jadwal->status }}</td>
                                     <td>
-                                        <a href="{{ route('jadwal.show', $jadwal->id) }}" class="btn btn-sm btn-info" role="button">Lihat</a>
-                                        <a href="{{ route('jadwal.edit', $jadwal->id) }}" class="btn btn-sm btn-warning" role="button">Edit</a>
-                                        <form action="{{ route('jadwal.destroy', $jadwal->id) }}" method="POST" class="d-inline">
+                                        <a href="{{ route('data-jadwal.show', $jadwal->id) }}" class="btn btn-sm btn-info" role="button">Lihat</a>
+                                        <a href="{{ route('data-jadwal.edit', $jadwal->id) }}" class="btn btn-sm btn-warning" role="button">Edit</a>
+                                        <form action="{{ route('data-jadwal.destroy', $jadwal->id) }}" method="POST" class="d-inline">
                                             @method('DELETE')
                                             @csrf
                                             <button type="submit" class="btn btn-danger btn-sm my-2" onclick="return confirm('Anda yakin menghapus data ini?')">Hapus</button>

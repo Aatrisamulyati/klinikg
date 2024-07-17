@@ -25,4 +25,8 @@ class Pasien extends Authenticatable
         'password',
         'remember_token',
     ];
+    public function transaksi()
+    {
+    	return $this->hasMany(Transaksi::class, 'hewan_id');
+    }
 }

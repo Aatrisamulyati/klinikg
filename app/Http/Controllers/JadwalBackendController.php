@@ -38,24 +38,17 @@ class JadwalBackendController extends Controller
      */
     public function store(Request $request)
     {
-        $validatedData = $request->validate([
+        $validated = $request->validate([
             'dokter_id' => 'required', 
             'hari' => 'required',
             'jam_mulai' => 'required',
             'jam_selesai' => 'required',
             'status' => 'required|in:aktif,tidak_aktif',
         ]);
-        Jadwal::create($validatedData); 
+        Jadwal::create($validated); 
         return redirect('data-jadwal')->with('success', 'Data berhasil ditambahkan!');
     }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\Jadwal_dokter  $jadwal_dokter
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Jadwal_dokter $jadwal_dokter)
+    public function show($id)
     {
         //
     }
@@ -63,34 +56,57 @@ class JadwalBackendController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Jadwal_dokter  $jadwal_dokter
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(Jadwal_dokter $jadwal_dokter)
+    public function edit($id)
     {
-        //
+        $jadwal = Jadwal::findOrFail($id);
+        $dokters = Dokter::all(); // Assuming you have a Dokter model
+
+        return view('backend.jadwal.edit', compact('jadwal', 'dokters'));
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Jadwal_dokter  $jadwal_dokter
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Jadwal_dokter $jadwal_dokter)
+    public function update(Request $request, $id)
     {
-        //
+        $validate = $request->validate([
+            'dokter_id' => 'required', 
+            'hari' => 'required',
+            'jam_mulai' => 'required',
+            'jam_selesai' => 'required',
+            'status' => 'required|in:aktif,tidak_aktif',
+        ]);
+
+         // Find the dokter by ID
+         $jadwal = Jadwal::findOrFail($id);
+         $jadwal->update($validate);
+ 
+         // Redirect to the data-product page with a success message
+         return redirect('data-jadwal')->with('success', 'Data berhasil diperbarui!');
+         
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Jadwal_dokter  $jadwal_dokter
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Jadwal_dokter $jadwal_dokter)
+    public function destroy( Request $request, $id)
     {
-        //
+        if($request->oldPicture) {
+            Storage::delete($request->oldPicture);
+        }
+
+        Jadwal::where('id', $id)->delete();
+
+        return redirect('data-jadwal')->with('success', 'Data berhasil di Hapus!');
     }
 }

@@ -35,5 +35,12 @@ class DatabaseSeeder extends Seeder
             'password' => bcrypt('12345678'),
             'level' => 'Pasien'
         ]);
+
+        User::create([
+            'name' => 'Pemilik',
+            'email' => 'pemilik@gmail.com',
+            'password' => bcrypt('12345678'),
+            'level' => 'Pemilik'
+        ]);
     }
 }
