@@ -8,16 +8,11 @@ use Illuminate\Database\Eloquent\Model;
 class Dokter extends Model
 {
     use HasFactory;
-
-    protected $fillable = [
-        'nama_dokter',
-        'spesialis',
-        'phone',
-    ];
     
+    protected $guarded=[];
     public function transaksi()
     {
-        return $this->belongsTo(Transaksi::class, 'dokter_id');
+        return $this->belongsTo(Booking::class, 'dokter_id');
     }
 
 }
