@@ -11,22 +11,15 @@ class Pasien extends Authenticatable
 {
     use HasFactory, Notifiable;
 
-    protected $fillable = [
-        'nama_pasien',
-        'email',
-        'foto_profil',
-        'tgl_lahir',
-        'phone',
-        'password',
-        'alamat',
-    ];
+    protected $guarded=[];
 
-    protected $hidden = [
-        'password',
-        'remember_token',
-    ];
+    public function user()
+    {
+        return $this->belongsTo(User::Class,'user_id');
+    }
+
     public function transaksi()
     {
-    	return $this->hasMany(Transaksi::class, 'hewan_id');
+    	// return $this->hasMany(Transaksi::class, 'hewan_id');
     }
 }

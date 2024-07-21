@@ -3,6 +3,7 @@
 use App\Http\Middleware\CekLevel;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\LoginController;
+use App\Http\Controllers\DokterAuthController;
 use App\Http\Controllers\DokterBackendController;
 use App\Http\Controllers\JadwalBackendController;
 use App\Http\Controllers\PasienBackendController;
@@ -46,7 +47,7 @@ Route::get('/antrian/index', function () {
 Route::get('/login', [LoginController::class, 'index'])->name('login');
 Route::post('/login', [LoginController::class, 'authenticate']);
 Route::post('/logout', [LoginController::class, 'logout']);
-
+Route::get('/register', [LoginController::class, 'showRegistrationForm'])->name('register')->middleware('guest');
 // Admin dan Dokter
 Route::group(['middleware' => [CekLevel::class . ':Admin']], function () {
     Route::resource('data-pasien', PasienBackendController::class);
@@ -59,6 +60,7 @@ Route::group(['middleware' => [CekLevel::class . ':Admin']], function () {
 
 });
 
+
 Route::get('/dashboard', function () {
     return view('/backend/layouts/main');
 })->middleware(['auth']);
@@ -66,3 +68,8 @@ Route::get('/dashboard', function () {
 Route::get('/dokter', function () {
     return view('/backend/dokter/create');
 });
+
+// web.php atau api.php
+Route::post('/dokter/register', [DokterAuthController::class, 'register']);
+Route::post('/dokter/login', [DokterAuthController::class, 'login']);
+Route::post('/dokter/logout', [DokterAuthController::class, 'logout']);

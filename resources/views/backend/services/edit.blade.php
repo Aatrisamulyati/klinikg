@@ -25,24 +25,21 @@
                         </div>
                         @enderror
                     </div>
-
-                    <div class="mb-3">
-                        <label for="product_id">Nama Product</label>
-                        <select class="form-control @error('product_id') is-invalid @enderror" id="product_id" name="product_id" required>
-                            <option value="">Pilih Product</option>
-                            @foreach($products as $product)
-                                <option value="{{ $product->id }}" {{ $servicess->product_id == $product->id ? 'selected' : '' }}>{{ $product->nama_product }}</option>
-                            @endforeach
-                        </select>
-                        @error('product_id')
-                            <span class="invalid-feedback" role="alert">
-                                <strong>{{ $message }}</strong>
-                            </span>
-                        @enderror
+                    <div class="form-check">
+                        <input 
+                            class="form-check-input @error('product_ids') is-invalid @enderror" 
+                            type="checkbox" 
+                            name="product_ids[]" 
+                            value="{{ $product->id }}" 
+                            id="product_{{ $product->id }}" 
+                            @if(in_array($product->id, old('product_ids', $selectedProducts))) checked @endif
+                        >
+                        <label class="form-check-label" for="product_{{ $product->id }}">
+                            {{ $product->nama_product }}
+                        </label>
                     </div>
-
                     <div class="mb-3">
-                        <label>Harga Satuan</label>
+                        <label>Harga </label>
                         <input type="text" name="harga"
                             class="form-control @error('harga') is-invalid @enderror"
                             value="{{ old('harga', $servicess->harga) }}">

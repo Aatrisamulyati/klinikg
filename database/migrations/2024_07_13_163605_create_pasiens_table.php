@@ -16,6 +16,7 @@ return new class extends Migration
         Schema::create('pasiens', function (Blueprint $table) {
             $table->id();
             $table->string('nama_pasien');
+            $table->unsignedBigInteger('user_id');
             $table->string('email')->unique();
             $table->string('foto_profil')->nullable();
             $table->date('tgl_lahir')->nullable();

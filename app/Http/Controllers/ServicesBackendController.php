@@ -38,14 +38,23 @@ class ServicesBackendController extends Controller
      */
     public function store(Request $request)
     {
-        $validated = $request->validate([
-            'nama_services' => 'required',
-            'product_id' => 'required', 
-            'harga' => 'required|numeric',
-        ]);
+        // $validated = $request->validate([
+        //     'nama_services' => 'required|string|max:255',
+        //     'product_ids' => 'required|array',
+        //     'product_ids.*' => 'exists:products,id',
+        //     'harga' => 'required|numeric',
+        // ]);
+
+        // $servicess = new Services();
+        // $servicess->nama_services = $validated['nama_services'];
+        // $servicess->harga = $validated['harga'];
+
+        // // Menyimpan relasi produk jika diperlukan
+        // $servicess->products()->sync($validated['product_ids']);
+
+        // return redirect('data-services')->with('success', 'Data berhasil ditambahkan!');
+
         
-        Services::create($validated); 
-        return redirect('data-services')->with('success', 'Data berhasil ditambahkan!');
     }
 
     /**
@@ -84,7 +93,7 @@ class ServicesBackendController extends Controller
     {
         $validated = $request->validate([
             'nama_services' => 'required',
-            'product_id' => 'required', 
+            'product_id' => 'required|array',
             'harga' => 'required|numeric',
         ]);
 

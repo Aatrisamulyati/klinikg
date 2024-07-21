@@ -77,6 +77,7 @@ class LoginController extends Controller
         switch ($userLevel) {
             case 'Admin':
             case 'Dokter':
+            case 'Owner':
                 return '/dashboard';
                 // Add more cases for other user levels if needed
             default:

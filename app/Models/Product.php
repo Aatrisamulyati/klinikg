@@ -2,8 +2,10 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
+use App\Models\Services;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
+
 
 class Product extends Model
 {
@@ -15,4 +17,8 @@ class Product extends Model
         'harga_satuan',
         'stok',
     ];
+
+    public function service(){
+        return $this-> belongsTo(Service::class, 'product_id');
+    } 
 }

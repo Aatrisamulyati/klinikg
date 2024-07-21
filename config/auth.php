@@ -1,5 +1,7 @@
 <?php
 
+use App\Models\Dokter;
+
 return [
 
     /*
@@ -63,6 +65,11 @@ return [
         'users' => [
             'driver' => 'eloquent',
             'model' => App\Models\User::class,
+        ],
+
+        'dokters' => [
+            'driver' => 'eloquent',
+            'model' => Dokter::class,
         ],
 
         // 'users' => [

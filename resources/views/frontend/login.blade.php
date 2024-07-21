@@ -42,7 +42,7 @@
 								<!-- Teks atau tombol untuk registrasi -->
 								<div class="col-12 text-center mt-3" style="font-size: 12px;">
                                     <p>Belum punya akun? 
-                                    <a href="#">Daftar di sini</a></p>
+                                    <a href="/register">Daftar di sini</a></p>
                                 </div>
 
                                 </div>

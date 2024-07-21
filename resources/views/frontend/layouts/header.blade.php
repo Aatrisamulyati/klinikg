@@ -8,6 +8,9 @@
     <nav id="navbar" class="navbar order-last order-lg-0">
       <ul>
         <li><a class="nav-link scrollto" href="/">Home</a></li>
+        {{-- jika user login maka tampilkan antrian, booking, jadwal dokter.
+             jika belum login tampilkan home, Dokter, service 
+             pakai metode Auth user untuk cek user sudah login atau belum--}}
         <li><a class="nav-link scrollto" href="/booking/index">Booking</a></li>
         <li><a class="nav-link scrollto" href="/antrian/index">Antrian</a></li>
         <li><a class="nav-link scrollto" href="/dokter/index">Doctors</a></li>

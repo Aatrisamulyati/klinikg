@@ -1,9 +1,10 @@
 <?php
 
 namespace App\Http\Controllers;
-use App\Http\Controllers;
 use App\Models\Dokter;
+use App\Http\Controllers;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 
 class DokterBackendController extends Controller
 {
@@ -37,19 +38,75 @@ class DokterBackendController extends Controller
      */
     public function store(Request $request)
     {
-        $validated = $request->validate([
-            'nama_dokter' => 'required|string|max:255',
-            'spesialis' => 'required|in:Spesialis Gigi|string|max:255',
-            'phone' => 'nullable|string|max:15',
+        // Validasi data
+        $request->validate([
+            'dokter_id' => 'required|integer|unique:dokters',
+            'nama_dokter' => 'required|string|max:255|unique:dokters',
+            'email' => 'required|string|email|max:255|unique:dokters',
+            'password' => 'required|string|min:8',
+            'spesialis' => 'required|string',
+            'phone' => 'nullable|string|max:20',
+            'foto_profil' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
         ]);
 
-        // Create a new dokter with the validated data
-        Dokter::create($validated);
+        $DokterImage = null;
 
-        // Redirect to the data-dokter page with a success message
+        // Check if the image is uploaded
+        if ($image = $request->file('foto_profil')) {
+            // Define the destination path for the image
+            $destinationPath = 'images/dokter/';
+            // Create a unique name for the image based on the current date and time
+            $dokterImage = date('YmdHis') . "." . $image->getClientOriginalExtension();
+            // Move the image to the destination path
+            $image->move($destinationPath, $dokterImage);
+        }
+
+        // Add the image name to the validated data
+        //$validated['foto_profil'] = $dokterImage;
+        $foto_profil = null;
+
+        Dokter::create([
+            'dokter_id' => $request->dokter_id,
+            'nama_dokter' => $request->nama_dokter,
+            'email' => $request->email,
+            'password' => Hash::make($request->password),
+            'spesialis' => $request->spesialis,
+            'phone' => $request->phone,
+            'foto_profil' => $foto_profil,
+        ]);
+    
+        dd($request->all());
+        // Buat user baru
+        /* $user = User::create([
+            'name' => ucwords($validatedData['name']),
+            'email' => $validatedData['email'],
+            'password' => bcrypt($validatedData['password']),
+        ]);
+
+        dd($user); */
+    
+        // Set level user sebagai Dokter
+       /*  $user->level = 'Dokter';
+        $user->save(); */
+    
+        // Buat dokter baru terkait dengan user yang baru dibuat
+        /* $dokter = Dokter::create([
+            'user_id' => $user->id,
+            'nama_dokter' => $validatedData['nama_dokter'],
+            'spesialis' => $validatedData['spesialis'],
+            'phone' => $validatedData['phone'],
+        ]);
+     */
+        // Debugging
+        /* if (!$user || !$dokter) {
+            return redirect('data-dokter')->with('error', 'Data gagal ditambahkan. Silakan coba lagi.');
+        } */
+    
+        // Redirect ke halaman data-dokter dengan pesan sukses
         return redirect('data-dokter')->with('success', 'Data berhasil ditambahkan!');
-
     }
+    
+
 
     /**
      * Display the specified resource.

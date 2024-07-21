@@ -37,10 +37,10 @@ class DatabaseSeeder extends Seeder
         ]);
 
         User::create([
-            'name' => 'Pemilik',
-            'email' => 'pemilik@gmail.com',
+            'name' => 'Owner',
+            'email' => 'owner@gmail.com',
             'password' => bcrypt('12345678'),
-            'level' => 'Pemilik'
+            'level' => 'Owner'
         ]);
     }
 }

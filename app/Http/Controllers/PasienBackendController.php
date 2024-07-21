@@ -41,6 +41,7 @@ class PasienBackendController extends Controller
     public function store(Request $request)
     {
         $validated = $request->validate([
+            'user_id' =>'required',
             'nama_pasien' => 'required',
             'email' => 'required|email|unique:pasiens',
             'foto_profile' => 'nullable|image',
@@ -83,7 +84,8 @@ class PasienBackendController extends Controller
      */
     public function show($id)
     {
-        //
+        $pasien = Pasien::findOrFail($id);
+        return view('backend.pasien.show', compact('pasien'));
     }
 
     /**
