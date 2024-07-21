@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Dashboard;
 
+use App\Models\Product;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\Booking;
@@ -21,8 +22,8 @@ class DashboardController extends Controller
         'pasiens' => User::where('level', 'Pelanggan')->get(),
         'dokters' => User::where('level', 'Dokter')->get(),
         'services' => Service::all(),
-        // 'bookings' => Booking::all(),?
-        'selesai' => Booking::where('status', 'Selesai')->get(), 
+        'products' => Product::all(),
+        'bookings' => Booking::all(), 
         ]);
     }
 
