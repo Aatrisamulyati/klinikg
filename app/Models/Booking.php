@@ -2,8 +2,6 @@
 
 namespace App\Models;
 
-use App\Models\Dokter;
-use App\Models\Pasien;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
@@ -14,11 +12,11 @@ class Booking extends Model
     protected $guarded=[];
     
     public function pasien(){
-        return $this-> belongsTo(Pasien::class, 'pasien_id');
+        return $this-> belongsTo(User::class, 'pasien_id');
     }
 
     public function dokter(){
-        return $this-> belongsTo(Dokter::class, 'dokter_id');
+        return $this-> belongsTo(User::class, 'dokter_id');
     }
 
     public function service(){

@@ -17,6 +17,8 @@ return new class extends Migration
             $table->id();
             $table->unsignedBigInteger('booking_id');
             $table->unsignedBigInteger('product_id');
+            $table->string('gambar');
+            $table->string('keterangan');
             $table->string('total');
             $table->timestamps();
         });

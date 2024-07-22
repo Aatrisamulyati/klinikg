@@ -22,7 +22,7 @@
             </a>
         </li>
 
-        <!-- Layouts -->
+        @if (Auth()->user()->level == 'Admin')
         <li class="menu-item {{ request()->routeIs('data-pasien.index') ? 'active' : '' }}">
             <a href="{{ route('data-pasien.index') }}" class="menu-link @yield('menuDataPasien')">
                 <i class="menu-icon tf-icons bx bx-user-plus"></i>
@@ -58,4 +58,12 @@
             </a>
         </li>
     </ul>
+    @elseif(Auth()->user()->level == 'Dokter')
+    <li class="menu-item {{ request()->routeIs('booking-detail.index') ? 'active' : '' }}">
+        <a href="{{ route('booking-detail.index') }}" class="menu-link  @yield('menuDetailBooking')">
+            <i class="menu-icon tf-icons bx bx-money"></i>
+            <div data-i18n="Basic">Detail Booking</div>
+        </a>
+    </li>
+    @endif
 </aside>

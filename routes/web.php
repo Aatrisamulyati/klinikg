@@ -6,6 +6,7 @@ use App\Http\Controllers\Admin\DashboardPasienController;
 use App\Http\Controllers\Admin\DashboardProductController;
 use App\Http\Controllers\Admin\DashboardServiceController;
 use App\Http\Controllers\Dashboard\DashboardController;
+use App\Http\Controllers\Dokter\DokterDetailBookingController;
 use App\Http\Middleware\CekLevel;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Login\LoginController;
@@ -55,5 +56,12 @@ Route::group(['middleware' => ['auth']], function () {
     Route::resource('data-services', DashboardServiceController::class);
     Route::resource('data-product', DashboardProductController::class);
     Route::resource('data-booking', DashboardBookingController::class);
+    });
+
+    Route::group(['middleware' => [CekLevel::class . ':Dokter']], function () {
+
+        Route::resource('booking-detail', DokterDetailBookingController::class);
+        // Route::resource('profile-dokter', DokterProfileController::class);
+        // Route::get('/cetak-booking-dokter', [BarbermanCetakController::class, 'cetakbookingbarberman'])->name('/cetak-booking-barberman');
     });
 });

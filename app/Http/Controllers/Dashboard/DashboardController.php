@@ -19,7 +19,7 @@ class DashboardController extends Controller
     public function index()
     {
         return view('admin.dashboard.index',[
-        'pasiens' => User::where('level', 'Pelanggan')->get(),
+        'pasiens' => User::where('level', 'Pasien')->get(),
         'dokters' => User::where('level', 'Dokter')->get(),
         'services' => Service::all(),
         'products' => Product::all(),

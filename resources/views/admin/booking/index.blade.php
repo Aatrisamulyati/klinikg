@@ -10,6 +10,10 @@
                 Data Transaksi
             </div>
             <div class="card-body">
+                <a href="{{ route('data-booking.create') }}" class="btn btn-success mb-3">
+                    <i class="fas fa-plus"></i>
+                    Tambahkan Data Booking
+                </a>
                 <div class="table-responsive">
                     <table id="example" class="display" style="width:100%">
                         <thead>
@@ -28,13 +32,13 @@
                         @foreach ($bookings as $data)
                             <tr>
                                 <td>{{ $loop->iteration }}</td>
-                                <td>{{ $data->pelanggans->nama }}</td>
-                                <td>{{ $data->dokters->nama }}</td>
-                                <td>{{ $data->services->nama }}</td>
+                                <td>{{ $data->pasien->nama ?? 'Data Tidak Ada' }}</td>
+                                <td>{{ $data->dokter->nama ?? 'Data Tidak Ada' }}</td>
+                                <td>{{ $data->service->nama ?? 'Data Tidak Ada' }}</td>
                                 <td>{{ $data->tanggal }}</td>
                                 <td>{{ $data->jam }}</td>
                                 <td>{{ $data->status }}</td>
-                                
+                                <td>
                                     <a href="{{ route('data-booking.edit', $data->id) }}" class="btn btn-sm btn-warning" role="button">Edit</a>
                                     <form action="{{ route('data-booking.destroy', $data->id) }}" method="POST" class="d-inline">
                                         @method('DELETE')
